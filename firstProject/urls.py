@@ -19,8 +19,9 @@ from firstProject import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
-    path('about-us/', views.aboutUs),
-    path('courses/', views.courses),
-    path('courses/<str:courseid>/', views.courseDetails)
+    path('', views.home,name='home'),
+    path('about/', views.aboutUs,name='about'),
+    path('blog/', views.blog,name='blog'),
+    path('contact/', views.contact,name='contact'),
+    # path('courses/<str:courseid>/', views.courseDetails)
 ]

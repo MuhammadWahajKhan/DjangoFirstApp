@@ -1,5 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse,HttpResponseRedirect
+from django.shortcuts import render,redirect
+from urllib.parse import urlencode
 
 def home(request):
     # data={
@@ -20,6 +21,31 @@ def aboutUs(request):
 def blog(request):
     return render(request, 'blog.html')
 
+def thankyou(request):
+    if request.method=="GET":
+        data = request.GET.dict()
+    return render(request, 'thankyou.html',{'data':data})    
+
 def contact(request):
-    return render(request, 'contact.html')
+    data={}
+    try:
+        if request.method=='POST':
+            name=request.POST.get('name')
+            email=request.POST.get('email')
+            subject=request.POST.get('subject')
+            message=request.POST.get('message')
+
+            data={
+                'name':name,
+                'email':email,
+                'subject':subject,
+                'message':message
+            }
+
+            url = "/thankyou/?{}".format(urlencode(data))
+
+            return HttpResponseRedirect(url)
+    except:
+        pass    
+    return render(request, 'contact.html',data)
    

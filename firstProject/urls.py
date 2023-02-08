@@ -23,5 +23,6 @@ urlpatterns = [
     path('about/', views.aboutUs,name='about'),
     path('blog/', views.blog,name='blog'),
     path('contact/', views.contact,name='contact'),
+    path('thankyou/',views.thankyou,name='thankyou'),
     # path('courses/<str:courseid>/', views.courseDetails)
 ]
